@@ -18,4 +18,4 @@
 项目管理：
     gitlab
  项目部署
-    docker
+    docker,git-runner
