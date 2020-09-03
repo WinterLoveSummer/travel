@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: travel-admin
+
+server:
+  port: 8084

@@ -1,0 +1,29 @@
+spring:
+  boot:
+    admin:
+      client:
+        url: http://192.168.219.129:8084
+  zipkin:
+    base-url: http://192.168.219.129:9411
+
+mybatis:
+  type-aliases-package: com.travel.common.domain
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    cache-enabled: true
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://192.168.219.129:8761/eureka/
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+

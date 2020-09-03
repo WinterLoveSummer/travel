@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: travel-eureka
+
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: 192.168.219.129
+  client:
+    #配置集群时开启
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/

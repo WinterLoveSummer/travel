@@ -1,0 +1,29 @@
+stages:
+  - build
+  - push
+  - run
+  - clear
+
+build:
+  stage: build
+  script:
+    - /usr/local/maven/apache-maven-3.6.3/bin/mvn clean package
+    - cp target/travel-config-1.0.0-SNAPSHOT.jar docker
+    - cd docker
+    - docker build -t 192.168.219.128:5000/travel-config .
+
+push:
+  stage: push
+  script:
+    - docker push 192.168.219.128:5000/travel-config
+
+run:
+  stage: run
+  script:
+    - cd docker
+    - docker-compose down
+    - docker-compose up -d
+clear:
+  stage: clear
+  script:
+    - docker rmi $(docker images -q -f dangling=true)

@@ -1,0 +1,14 @@
+version: '3.1'
+services:
+  travel-config:
+    restart: always
+    image: 192.168.219.128:5000/travel-config
+    container_name: travel-config
+    ports:
+      - 8888:8888
+    networks:
+      - config_network
+
+
+networks:
+  config_network:

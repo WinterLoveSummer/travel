@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: travel-service-upload
+
+server:
+  port: 8503
+
+fastdfs.base.url: http://192.168.219.130:8888/
+storage:
+  type: fastdfs
+  fastdfs:
+    tracker_server: 192.168.219.130:22122

@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: travel-config
+  boot:
+    admin:
+      client:
+        url: http://192.168.219.129:8084
+  cloud:
+    config:
+      label: master
+      server:
+        git:
+          uri: https://git.lug.ustc.edu.cn/travels/travel-config-file.git
+          search-paths: /respo/prod
+          force-pull: true #设置强行pull拉取
+          username: WinterLoveSummer
+          password: lhy5211314...
+
+  zipkin:
+    base-url: http://192.168.219.129:9411
+
+server:
+  port: 8888
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://192.168.219.129:8761/eureka/
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: health,info

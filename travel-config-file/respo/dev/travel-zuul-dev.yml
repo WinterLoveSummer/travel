@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: travel-zuul
+
+server:
+  port: 80
+
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 12000
+
+ribbon:
+  ReadTimeout: 12000
+  ConnectTimeout: 12000
+  eureka:
+    enabled: true
+
+zuul:
+  host:
+    socket-timeout-millis: 12000
+    connect-timeout-millis: 12000
+  sensitive-headers: Access-Control-Allow-Origin
+  ignored-headers: Access-Control-Allow-Origin,H-APP-Id,Token,APPToken
+#  routes:
+#    backend-sso:
+#      path: /backend/sso/**
+#      serviceId: travel-service-sso
+#    backend-posts:
+#      path: /backend/posts/**
+#      serviceId: travel-web-posts
