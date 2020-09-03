@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!-- 引入数据库连接配置 -->
+    <properties resource="jdbc.properties"/>
+
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <!-- 配置 tk.mybatis 插件 -->
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="tk.mybatis.mapper.MyMapper"/>
+        </plugin>
+
+        <!-- 配置数据库连接 -->
+        <jdbcConnection
+                driverClass="${jdbc.driverClass}"
+                connectionURL="${jdbc.connectionURL}"
+                userId="${jdbc.username}"
+                password="${jdbc.password}">
+        </jdbcConnection>
+
+        <!-- 配置实体类存放路径 -->
+        <javaModelGenerator targetPackage="com.travel.service.sso.entity" targetProject="src/main/java"/>
+
+        <!-- 配置 XML 存放路径 -->
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
+
+        <!-- 配置 DAO 存放路径 -->
+        <javaClientGenerator
+                targetPackage="com.travel.service.sso.mapper"
+                targetProject="src/main/java"
+                type="XMLMAPPER"/>
+
+        <!-- 配置需要生成的表，% 代表所有 -->
+        <table catalog="travel" tableName="dynamic_image">
+            <!-- mysql 配置  identity是否自增   自增 true-->
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <!-- 多张表复制即可 -->
+
+        <!-- catalog 对应库名称 -->
+<!--        <table catalog="travel-service-posts" tableName="tb_posts_post">-->
+<!--            &lt;!&ndash; mysql 配置  identity是否自增   自增 true&ndash;&gt;-->
+<!--            <generatedKey column="post_guid" sqlStatement="Mysql" identity="false"/>-->
+<!--        </table>-->
+    </context>
+</generatorConfiguration>

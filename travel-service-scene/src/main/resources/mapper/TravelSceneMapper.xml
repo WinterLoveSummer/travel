@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.travel.service.scene.mapper.TravelSceneMapper">
+  <resultMap id="BaseResultMap" type="com.travel.service.scene.entity.TravelScene">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="catename" jdbcType="VARCHAR" property="catename" />
+    <result column="cnname" jdbcType="VARCHAR" property="cnname" />
+    <result column="hotgrade" jdbcType="INTEGER" property="hotgrade" />
+    <result column="photo" jdbcType="VARCHAR" property="photo" />
+    <result column="grade" jdbcType="DOUBLE" property="grade" />
+    <result column="comment_count" jdbcType="INTEGER" property="commentCount" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+  </resultMap>
+
+  <select id="selectSlideshow" resultMap="BaseResultMap">
+    select id,catename,cnname,hotgrade,photo,max(grade),comment_count,city
+    from travel_scene
+    GROUP BY city limit 6
+  </select>
+
+  <update id="updatecommentCount" parameterType="int">
+    update travel_scene set comment_count = (comment_count + 1) where id = #{id};
+  </update>
+</mapper>

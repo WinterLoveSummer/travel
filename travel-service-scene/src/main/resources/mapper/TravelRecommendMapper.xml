@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.travel.service.scene.mapper.TravelRecommendMapper">
+  <resultMap id="BaseResultMap" type="com.travel.service.scene.entity.TravelRecommend">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="date_birth" jdbcType="TIMESTAMP" property="dateBirth" />
+    <result column="office" jdbcType="VARCHAR" property="office" />
+    <result column="school" jdbcType="VARCHAR" property="school" />
+    <result column="login_code" jdbcType="VARCHAR" property="loginCode" />
+    <result column="scene_id" jdbcType="INTEGER" property="sceneId" />
+    <result column="weight" jdbcType="INTEGER" property="weight" />
+  </resultMap>
+
+    <select id="selectRecommend" resultMap="BaseResultMap">
+      select id,date_birth,office,school,login_code,scene_id,weight
+      from travel_recommend
+      <if test="travelUser.dateBirth!=null">
+        where date_birth = #{travelUser.dateBirth}
+      </if>
+      <if test="travelUser.school!=null and travelUser.school!=''">
+        or school = #{travelUser.school}
+      </if>
+      <if test="travelUser.office!=null and travelUser.office!=''">
+        or office = #{travelUser.office}
+      </if>
+    </select>
+</mapper>

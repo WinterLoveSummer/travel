@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    config:
+      uri: http://192.168.219.129:8888
+      name: travel-common-service,travel-eureka
+      label: master
+      profile: prod

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.travel.service.scene.mapper.TravelCommentsMapper">
+  <resultMap id="BaseResultMap" type="com.travel.service.scene.entity.TravelComments">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="scene_id" jdbcType="INTEGER" property="sceneId" />
+    <result column="user_code" jdbcType="VARCHAR" property="userCode" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="grade" jdbcType="INTEGER" property="grade" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+
+  <resultMap id="CommentsMap" type="com.travel.service.scene.entity.vo.CommentsVo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="scene_id" jdbcType="INTEGER" property="sceneId" />
+    <result column="user_code" jdbcType="VARCHAR" property="userCode" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="grade" jdbcType="INTEGER" property="grade" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+
+  <insert id="insertComments">
+    insert into travel_comments(scene_id,user_code,content,create_time,grade)
+    values(
+      #{travelComments.sceneId},
+      #{travelComments.userCode},
+      #{travelComments.content},
+      NOW(),
+      #{travelComments.grade}
+    )
+  </insert>
+
+  <select id="selectComments" resultMap="CommentsMap" parameterType="int">
+    select id,scene_id,user_code,content,grade,create_time
+    from travel_comments where scene_id = #{sceneId} order by create_time desc
+  </select>
+</mapper>

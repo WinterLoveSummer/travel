@@ -1,0 +1,35 @@
+version: '3.1'
+services:
+  travel-eureka1:
+    restart: always
+    image: 192.168.219.128:5000/travel-eureka
+    container_name: travel-eureka1
+    ports:
+      - 8761:8761
+    networks:
+      - eureka_network1
+
+#  travel-eureka2:
+#    restart: always
+#    image: 192.168.219.128:5000/travel-eureka
+#    container_name: travel-eureka2
+#    ports:
+#      - 8861:8761
+#    networks:
+#      - eureka_network2
+#
+#  travel-eureka3:
+#    restart: always
+#    image: 192.168.219.128:5000/travel-eureka
+#    container_name: travel-eureka3
+#    ports:
+#      - 8961:8761
+#    networks:
+#      - eureka_network3
+
+
+
+networks:
+  eureka_network1:
+#  eureka_network2:
+#  eureka_network3:

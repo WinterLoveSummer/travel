@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.travel.service.sso.mapper.TravelUserMapper">
+  <resultMap id="BaseResultMap" type="com.travel.common.domain.TravelUser">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="user_code" jdbcType="VARCHAR" property="userCode" />
+    <result column="login_code" jdbcType="VARCHAR" property="loginCode" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="sex" jdbcType="CHAR" property="sex" />
+    <result column="date_birth" jdbcType="INTEGER" property="dateBirth" />
+    <result column="office" jdbcType="VARCHAR" property="office" />
+    <result column="school" jdbcType="VARCHAR" property="school" />
+    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+    <result column="SIGN" jdbcType="VARCHAR" property="sign" />
+    <result column="wx_openid" jdbcType="VARCHAR" property="wxOpenid" />
+    <result column="pwd_security_level" jdbcType="DECIMAL" property="pwdSecurityLevel" />
+    <result column="pwd_update_record" jdbcType="VARCHAR" property="pwdUpdateRecord" />
+    <result column="pwd_question" jdbcType="VARCHAR" property="pwdQuestion" />
+    <result column="pwd_question_answer" jdbcType="VARCHAR" property="pwdQuestionAnswer" />
+    <result column="pwd_question_2" jdbcType="VARCHAR" property="pwdQuestion2" />
+    <result column="pwd_question_answer_2" jdbcType="VARCHAR" property="pwdQuestionAnswer2" />
+    <result column="pwd_question_3" jdbcType="VARCHAR" property="pwdQuestion3" />
+    <result column="pwd_question_answer_3" jdbcType="VARCHAR" property="pwdQuestionAnswer3" />
+    <result column="pwd_quest_update_date" jdbcType="TIMESTAMP" property="pwdQuestUpdateDate" />
+    <result column="last_login_ip" jdbcType="VARCHAR" property="lastLoginIp" />
+    <result column="last_login_date" jdbcType="TIMESTAMP" property="lastLoginDate" />
+    <result column="freeze_date" jdbcType="TIMESTAMP" property="freezeDate" />
+    <result column="freeze_cause" jdbcType="VARCHAR" property="freezeCause" />
+    <result column="STATUS" jdbcType="CHAR" property="status" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  
+
+    <update id="updateStatus">
+      update travel_user set status=1,update_time=NOW()
+      where
+      <if test="loginCode!=null and loginCode!=''">
+         login_code=#{loginCode}
+      </if>
+  </update>
+
+</mapper>

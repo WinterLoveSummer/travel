@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.travel.service.sso.mapper.TravelDynamicMapper">
+  <resultMap id="BaseResultMap" type="com.travel.service.sso.entity.TravelDynamic">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="dynamic_code" jdbcType="VARCHAR" property="dynamicCode" />
+    <result column="login_code" jdbcType="VARCHAR" property="loginCode" />
+    <result column="dynamic_title" jdbcType="VARCHAR" property="dynamicTitle" />
+    <result column="number_of_upvotes" jdbcType="DECIMAL" property="numberOfUpvotes" />
+    <result column="number_of_downvotes" jdbcType="DECIMAL" property="numberOfDownvotes" />
+    <result column="number_of_reads" jdbcType="DECIMAL" property="numberOfReads" />
+    <result column="number_of_comments" jdbcType="DECIMAL" property="numberOfComments" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="STATUS" jdbcType="CHAR" property="status" />
+    <result column="dynamic_main" jdbcType="LONGVARCHAR" property="dynamicMain" />
+  </resultMap>
+
+  <select id="selectDynamics" resultType="com.travel.service.sso.entity.vo.DynamicVo">
+    select dynamic_code dynamicCode,login_code loginCode,dynamic_title dynamicTitle,dynamic_main dynamicMain,
+           number_of_upvotes numberOfUpvotes,number_of_comments numberOfComments,create_time createTime,status
+    from travel_dynamic
+    where status = 0
+    <if test="loginCode != null and loginCode!=''">
+      and login_code = #{loginCode}
+    </if>
+    order by create_time desc
+  </select>
+</mapper>
